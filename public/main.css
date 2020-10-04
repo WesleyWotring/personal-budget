@@ -69,7 +69,7 @@ div.hero h2 {
 }
 
 .page-area {
-    max-width: 768px;
+    max-width: 800px;
     display: inline-block;
 }
 
@@ -86,7 +86,7 @@ footer.bottom {
 .container div.text-box {
     display: inline-block;
     width: 100%;
-    max-width: 340px;
+    max-width: 300px;
     text-align: justify;
     margin: 20px;
 }
