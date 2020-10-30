@@ -112,26 +112,20 @@
         datasets: [
             {
                 data:[],
-                backgroundColor:[
-                    '#ffcd56',
-                    '#ff6384',
-                    '#36a2eb',
-                    '#8e2be2',
-                    '#ffc0cb',
-                    '#adff2f',
-                    '#ffa500',
-                ],
+                backgroundColor:[],
             }
         ],
         labels: []
     };
 
     function getDonutBudget(){
-        axios.get('/budget')
+        axios.get('http://localhost:3000/api/budget/')
         .then(function (res){
             console.log(res);
-            for (var i = 0; i < res.data.myBudget.length; i++){
-                dataDonut[res.data.myBudget[i].title] = res.data.myBudget[i].budget;
+            for (var i = 0; i < res.data.length; i++){
+            let title = res.data[i].title; 
+            let budget = res.data[i].budget;                
+            dataDonut[title]= budget;
             }
             createDonut();
         });
@@ -236,12 +230,13 @@
         });
     }
     function getBudget(){
-        axios.get('/budget')
+        axios.get('http://localhost:3000/api/budget/')
         .then(function (res){
             console.log(res);
-            for (var i = 0; i < res.data.myBudget.length; i++){
-                dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
-                dataSource.labels[i] = res.data.myBudget[i].title;
+            for (var i = 0; i < res.data.length; i++){
+                dataSource.datasets[0].data[i] = res.data[i].budget;
+                dataSource.labels[i] = res.data[i].title;
+                dataSource.datasets[0].backgroundColor[i] = res.data[i].backgroundColor;
             }
             createChart();
         });
